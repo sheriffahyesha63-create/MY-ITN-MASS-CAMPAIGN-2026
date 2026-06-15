@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>reg.html</title>
+
+
+
+<style>
+
+:root{
+
+--p1:#0d0887;
+
+--p2:#6a00a8;
+
+--p3:#9c179e;
+
+--p4:#cc4778;
+
+--p5:#ed7953;
+
+}
+
+
+
+*{
+
+box-sizing:border-box;
+
+font-family:Segoe UI,sans-serif;
+
+}
+
+
+
+body{
+
+margin:0;
+
+background:#fff;
+
+min-height:100vh;
+
+display:flex;
+
+flex-direction:column;
+
+}
+
+
+
+header,footer{
+
+background:linear-gradient(135deg,var(--p1),var(--p2),var(--p3),var(--p4));
+
+color:#fff;
+
+}
+
+
+
+header{
+
+padding:15px;
+
+}
+
+
+
+.head{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+gap:10px;
+
+}
+
+
+
+.logo{
+
+width:70px;
+
+height:70px;
+
+object-fit:contain;
+
+}
+
+
+
+.title{
+
+text-align:center;
+
+flex:1;
+
+}
+
+
+
+main{
+
+padding:15px;
+
+flex:1;
+
+}
+
+
+
+.card{
+
+max-width:900px;
+
+margin:auto;
+
+background:#fff;
+
+padding:18px;
+
+border-radius:12px;
+
+box-shadow:0 2px 12px rgba(0,0,0,.12);
+
+}
+
+
+
+.step{
+
+display:none;
+
+}
+
+
+
+.step.active{
+
+display:block;
+
+}
+
+
+
+.grid{
+
+display:grid;
+
+grid-template-columns:1fr;
+
+gap:12px;
+
+}
+
+
+
+input,select{
+
+width:100%;
+
+padding:10px;
+
+border:1px solid #ccc;
+
+border-radius:8px;
+
+}
+
+
+
+label{
+
+font-weight:600;
+
+display:block;
+
+margin-bottom:4px;
+
+}
+
+
+
+.btns{
+
+display:flex;
+
+gap:10px;
+
+justify-content:space-between;
+
+margin-top:15px;
+
+}
+
+
+
+button{
+
+padding:12px 18px;
+
+border:none;
+
+border-radius:8px;
+
+color:#fff;
+
+background:linear-gradient(135deg,var(--p1),var(--p3));
+
+cursor:pointer;
+
+}
+
+
+
+button:hover{
+
+opacity:.9;
+
+}
+
+
+
+.summary{
+
+background:#f7f7f7;
+
+padding:12px;
+
+border-radius:8px;
+
+line-height:1.8;
+
+}
+
+
+
+footer{
+
+text-align:center;
+
+padding:15px;
+
+}
+
+
+
+@media(min-width:768px){
+
+.grid{
+
+grid-template-columns:1fr 1fr;
+
+}
+
+.full{
+
+grid-column:1/-1;
+
+}
+
+}
+
+</style>
+
+</head>
+
+
+
+<body>
+
+
+
+<header>
+
+<div class="head">
+
+
+
+<img src="ICF.png" class="logo">
+
+
+
+<div class="title">
+
+<h2>National Malaria Control Program</h2>
+
+</div>
+
+
+
+<div style="text-align:center">
+
+<img src="NMCP.png" class="logo">
+
+<div>ITN MASS CAMPAIGN @2026</div>
+
+</div>
+
+
+
+</div>
+
+</header>
+
+
+
+<main>
+
+<div class="card">
+
+
+
+<form id="frm">
+
+
+
+<!-- STEP 1 -->
+
+
+
+<div class="step active" id="s1">
+
+<h3>Step 1 - Location Information</h3>
+
+
+
+<div class="grid">
+
+
+
+<div>
+
+<label>Date</label>
+
+<input id="date" readonly>
+
+</div>
+
+
+
+<div>
+
+<label>GPS</label>
+
+<input id="gps" readonly>
+
+</div>
+
+
+
+<div>
+
+<label>District</label>
+
+<select id="district" required></select>
+
+</div>
+
+
+
+<div>
+
+<label>Chiefdom</label>
+
+<select id="chiefdom" required></select>
+
+</div>
+
+
+
+<div>
+
+<label>PHU</label>
+
+<select id="phu" required></select>
+
+</div>
+
+
+
+<div>
+
+<label>Community</label>
+
+<select id="community" required></select>
+
+</div>
+
+
+
+</div>
+
+
+
+<div class="btns">
+
+<span></span>
+
+<button type="button" onclick="nextStep(2)">Next</button>
+
+</div>
+
+
+
+</div>
+
+
+
+<!-- STEP 2 -->
+
+
+
+<div class="step" id="s2">
+
+
+
+<h3>Step 2 - Household Information</h3>
+
+
+
+<div class="grid">
+
+
+
+<div>
+
+<label>First Name</label>
+
+<input id="fname" required>
+
+</div>
+
+
+
+<div>
+
+<label>Middle Name</label>
+
+<input id="mname">
+
+</div>
+
+
+
+<div>
+
+<label>Surname</label>
+
+<input id="sname" required>
+
+</div>
+
+
+
+<div>
+
+<label>Telephone</label>
+
+<input
+
+id="phone"
+
+maxlength="9"
+
+pattern="0[0-9]{8}"
+
+placeholder="0XXXXXXXX">
+
+</div>
+
+
+
+<div>
+
+<label>Sex</label>
+
+<select id="gender" required>
+
+<option value="">Select Sex</option>
+
+<option value="Male">Male</option>
+
+<option value="Female">Female</option>
+
+</select>
+
+</div>
+
+
+
+</div>
+
+
+
+<div class="btns">
+
+<button type="button" onclick="prevStep(1)">Previous</button>
+
+<button type="button" onclick="nextStep(3)">Next</button>
+
+</div>
+
+
+
+</div>
+
+
+
+<!-- STEP 3 -->
+
+
+
+<div class="step" id="s3">
+
+
+
+<h3>Step 3 - Registration Information</h3>
+
+
+
+<div class="grid">
+
+
+
+<div>
+
+<label>Total Household Population</label>
+
+<input type="number" id="total" min="1" required>
+
+</div>
+
+
+
+<div>
+
+<label>Pregnant Women</label>
+
+<input type="number" id="preg" min="0" required>
+
+</div>
+
+
+
+<div>
+
+<label>Under Fives</label>
+
+<input type="number" id="u5" min="0" required>
+
+</div>
+
+
+
+<div>
+
+<label>Household Registrar</label>
+
+<input id="registrar" required>
+
+</div>
+
+
+
+<div>
+
+<label>Distribution Point</label>
+
+<input id="dp" required>
+
+</div>
+
+
+
+<div>
+
+<label>Generated Token</label>
+
+<input id="token" readonly>
+
+</div>
+
+
+
+</div>
+
+
+
+<div class="btns">
+
+<button type="button" onclick="prevStep(2)">Previous</button>
+
+<button type="button" onclick="buildSummary()">Summary</button>
+
+</div>
+
+
+
+</div>
+
+
+
+<!-- STEP 4 -->
+
+
+
+<div class="step" id="s4">
+
+
+
+<h3>Registration Summary</h3>
+
+
+
+<div class="summary" id="summary"></div>
+
+
+
+<div class="btns">
+
+<button type="button" onclick="prevStep(3)">Previous</button>
+
+<button type="submit">Submit Registration</button>
+
+</div>
+
+
+
+</div>
+
+
+
+</form>
+
+
+
+</div>
+
+</main>
+
+
+
+<footer>
+
+ICF-SL @2026
+
+</footer>
+
+
+
+<script>
+
+
+
+/* Auto Date */
+
+
+
+date.value = new Date().toISOString().split('T')[0];
+
+
+
+/* GPS Capture */
+
+
+
+navigator.geolocation?.getCurrentPosition(
+
+p=>{
+
+gps.value =
+
+p.coords.latitude.toFixed(6)+","+
+
+p.coords.longitude.toFixed(6);
+
+},
+
+()=>{
+
+gps.value="GPS Unavailable";
+
+}
+
+);
+
+
+
+/* Load Cascading CSV */
+
+
+
+async function loadCSV(){
+
+
+
+try{
+
+
+
+let t = await fetch('cascading.csv').then(r=>r.text());
+
+
+
+let d = t.trim()
+
+.split(/\r?\n/)
+
+.slice(1)
+
+.map(x=>x.split(','));
+
+
+
+window.rows = d;
+
+
+
+fillDistricts();
+
+
+
+}catch(e){
+
+
+
+console.log(e);
+
+
+
+}
+
+
+
+}
+
+
+
+function uniq(arr){
+
+return [...new Set(arr)];
+
+}
+
+
+
+function fill(el,arr){
+
+
+
+el.innerHTML =
+
+'<option value="">Select</option>' +
+
+arr.map(v=>`<option value="${v}">${v}</option>`).join('');
+
+
+
+}
+
+
+
+function fillDistricts(){
+
+
+
+fill(
+
+district,
+
+uniq(rows.map(r=>r[0]))
+
+);
+
+
+
+}
+
+
+
+district.onchange = ()=>{
+
+
+
+fill(
+
+chiefdom,
+
+uniq(
+
+rows
+
+.filter(r=>r[0]===district.value)
+
+.map(r=>r[1])
+
+)
+
+);
+
+
+
+phu.innerHTML='';
+
+community.innerHTML='';
+
+
+
+};
+
+
+
+chiefdom.onchange = ()=>{
+
+
+
+fill(
+
+phu,
+
+uniq(
+
+rows
+
+.filter(r=>r[0]===district.value && r[1]===chiefdom.value)
+
+.map(r=>r[2])
+
+)
+
+);
+
+
+
+community.innerHTML='';
+
+
+
+};
+
+
+
+phu.onchange = ()=>{
+
+
+
+fill(
+
+community,
+
+uniq(
+
+rows
+
+.filter(
+
+r=>
+
+r[0]===district.value &&
+
+r[1]===chiefdom.value &&
+
+r[2]===phu.value
+
+)
+
+.map(r=>r[3])
+
+)
+
+);
+
+
+
+};
+
+
+
+/* Navigation */
+
+
+
+function showStep(n){
+
+
+
+document
+
+.querySelectorAll('.step')
+
+.forEach(x=>x.classList.remove('active'));
+
+
+
+document
+
+.getElementById('s'+n)
+
+.classList.add('active');
+
+
+
+}
+
+
+
+function nextStep(n){
+
+showStep(n);
+
+}
+
+
+
+function prevStep(n){
+
+showStep(n);
+
+}
+
+
+
+/* Token Generation */
+
+
+
+function makeToken(){
+
+
+
+token.value =
+
+(
+
+(fname.value + sname.value)
+
+.replace(/\s+/g,'')
+
++
+
+(phone.value || '')
+
+)
+
+.toLowerCase();
+
+
+
+}
+
+
+
+fname.oninput = makeToken;
+
+sname.oninput = makeToken;
+
+phone.oninput = makeToken;
+
+
+
+/* Summary */
+
+
+
+function buildSummary(){
+
+
+
+if(phone.value && !/^0\d{8}$/.test(phone.value)){
+
+
+
+alert(
+
+'Telephone number must start with 0 and contain exactly 9 digits.'
+
+);
+
+
+
+return;
+
+
+
+}
+
+
+
+if(+preg.value > +total.value){
+
+
+
+alert(
+
+'Pregnant women cannot exceed total household population.'
+
+);
+
+
+
+return;
+
+
+
+}
+
+
+
+if(+u5.value > +total.value){
+
+
+
+alert(
+
+'Under fives cannot exceed total household population.'
+
+);
+
+
+
+return;
+
+
+
+}
+
+
+
+summary.innerHTML = `
+
+
+
+<b>Date:</b> ${date.value}<br>
+
+
+
+<b>GPS:</b> ${gps.value}<br>
+
+
+
+<b>District:</b> ${district.value}<br>
+
+
+
+<b>Chiefdom:</b> ${chiefdom.value}<br>
+
+
+
+<b>PHU:</b> ${phu.value}<br>
+
+
+
+<b>Community:</b> ${community.value}<br>
+
+
+
+<hr>
+
+
+
+<b>First Name:</b> ${fname.value}<br>
+
+
+
+<b>Middle Name:</b> ${mname.value}<br>
+
+
+
+<b>Surname:</b> ${sname.value}<br>
+
+
+
+<b>Telephone:</b> ${phone.value}<br>
+
+
+
+<b>Sex:</b> ${gender.value}<br>
+
+
+
+<hr>
+
+
+
+<b>Total Population:</b> ${total.value}<br>
+
+
+
+<b>Pregnant Women:</b> ${preg.value}<br>
+
+
+
+<b>Under Fives:</b> ${u5.value}<br>
+
+
+
+<b>Registrar:</b> ${registrar.value}<br>
+
+
+
+<b>Distribution Point:</b> ${dp.value}<br>
+
+
+
+<b>Token:</b> ${token.value}
+
+
+
+`;
+
+
+
+showStep(4);
+
+
+
+}
+
+
+
+/* Submit */
+
+
+
+frm.onsubmit = function(e){
+
+
+
+e.preventDefault();
+
+
+
+alert('Registration submitted successfully');
+
+
+
+};
+
+
+
+/* Start */
+
+
+
+loadCSV();
+
+
+
+</script>
+
+
+
+</body>
+
+</html>
+
+
